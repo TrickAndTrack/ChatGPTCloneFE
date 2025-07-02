@@ -1,0 +1,18 @@
+<div class="chat-container">
+  <h1 class="title">ChatGPT</h1>
+
+  <div class="chat-box">
+    <div *ngFor="let msg of messages()" class="message-row" [ngClass]="msg.sender">
+      <div class="message-bubble">
+        <span [innerHTML]="formatText(msg.text)"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()" placeholder="Type a message..." />
+    <button (click)="sendMessage()" [disabled]="isLoading()">Send</button>
+  </div>
+
+  <p *ngIf="isLoading()" class="thinking">Thinking...</p>
+</div>
